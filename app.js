@@ -1,10 +1,45 @@
-// Sample list of essential oils
 const oils = [
-  { name: 'Lavender', benefits: ['Relaxation', 'Sleep Aid'] },
-  { name: 'Peppermint', benefits: ['Energy Boost', 'Headache Relief'] },
-  { name: 'Eucalyptus', benefits: ['Respiratory Health', 'Decongestant'] },
-  // Add more oils as needed
+  { name: 'Lavender', benefits: ['Relaxation', 'Sleep Aid'], safety: 'Generally safe, dilute before use.' },
+  { name: 'Peppermint', benefits: ['Energy Boost', 'Headache Relief'], safety: 'Avoid during pregnancy and breastfeeding.' },
+  { name: 'Eucalyptus', benefits: ['Respiratory Health', 'Decongestant'], safety: 'May cause skin irritation; dilute properly.' },
+  { name: 'Lemon', benefits: ['Detoxification', 'Mood Enhancement'], safety: 'Photosensitive; avoid sunlight after topical use.' },
+  { name: 'Tea Tree', benefits: ['Antiseptic', 'Immune Support'], safety: 'Toxic if ingested; external use only.' },
+  { name: 'Frankincense', benefits: ['Stress Relief', 'Immune Boost'], safety: 'Generally safe; dilute before use.' },
+  { name: 'Chamomile', benefits: ['Relaxation', 'Skin Health'], safety: 'Avoid if allergic to ragweed.' },
+  { name: 'Rosemary', benefits: ['Memory Improvement', 'Hair Growth'], safety: 'Avoid during pregnancy; may increase blood pressure.' },
+  { name: 'Ylang Ylang', benefits: ['Stress Reduction', 'Aphrodisiac'], safety: 'May cause headaches or nausea in high concentrations.' },
+  { name: 'Bergamot', benefits: ['Mood Lifting', 'Stress Reduction'], safety: 'Photosensitive; avoid sunlight after topical use.' },
+  { name: 'Grapefruit', benefits: ['Energizing', 'Appetite Control'], safety: 'Photosensitive; avoid sunlight after topical use.' },
+  { name: 'Sandalwood', benefits: ['Mental Clarity', 'Stress Relief'], safety: 'Generally safe; dilute before use.' },
+  { name: 'Clary Sage', benefits: ['Hormone Balance', 'Stress Reduction'], safety: 'Avoid during pregnancy.' },
+  { name: 'Geranium', benefits: ['Skin Health', 'Hormone Balance'], safety: 'Generally safe; may cause skin irritation if not diluted.' },
+  { name: 'Patchouli', benefits: ['Mood Enhancement', 'Skin Health'], safety: 'Generally safe; dilute before use.' },
+  { name: 'Lemongrass', benefits: ['Muscle Relief', 'Stress Reduction'], safety: 'May cause skin irritation; dilute properly.' },
+  { name: 'Cedarwood', benefits: ['Stress Relief', 'Hair Growth'], safety: 'Avoid during pregnancy.' },
+  { name: 'Juniper Berry', benefits: ['Detoxification', 'Skin Health'], safety: 'Avoid during pregnancy and kidney disease.' },
+  { name: 'Cypress', benefits: ['Circulation Improvement', 'Muscle Relief'], safety: 'Avoid during pregnancy.' },
+  { name: 'Neroli', benefits: ['Skin Regeneration', 'Stress Relief'], safety: 'Generally safe; dilute before use.' },
+  { name: 'Jasmine', benefits: ['Aphrodisiac', 'Mood Lifting'], safety: 'Generally safe; dilute before use.' },
+  { name: 'Cinnamon', benefits: ['Antimicrobial', 'Circulation Boost'], safety: 'Can cause skin irritation; use in low concentrations.' },
+  { name: 'Ginger', benefits: ['Digestive Aid', 'Anti-Inflammatory'], safety: 'May cause skin irritation; dilute properly.' },
+  { name: 'Rose', benefits: ['Mood Enhancement', 'Skin Health'], safety: 'Generally safe; dilute before use.' },
+  { name: 'Myrrh', benefits: ['Skin Health', 'Immune Support'], safety: 'Avoid during pregnancy.' },
+  { name: 'Basil', benefits: ['Mental Alertness', 'Muscle Relief'], safety: 'Avoid during pregnancy; may cause skin irritation.' },
+  { name: 'Orange', benefits: ['Mood Enhancement', 'Immune Support'], safety: 'Photosensitive; avoid sunlight after topical use.' },
+  { name: 'Spearmint', benefits: ['Digestive Aid', 'Mental Clarity'], safety: 'Generally safe; dilute before use.' },
+  { name: 'Pine', benefits: ['Respiratory Health', 'Energy Boost'], safety: 'May cause skin irritation; dilute properly.' },
+  { name: 'Black Pepper', benefits: ['Circulation Boost', 'Muscle Relief'], safety: 'Use in low concentrations; may cause skin irritation.' },
+  { name: 'Helichrysum', benefits: ['Skin Regeneration', 'Anti-Inflammatory'], safety: 'Generally safe; dilute before use.' },
+  { name: 'Lime', benefits: ['Antioxidant', 'Mood Lifting'], safety: 'Photosensitive; avoid sunlight after topical use.' },
+  { name: 'Marjoram', benefits: ['Muscle Relaxation', 'Stress Relief'], safety: 'Avoid during pregnancy.' },
+  { name: 'Thyme', benefits: ['Immune Support', 'Antimicrobial'], safety: 'Use in low concentrations; may cause skin irritation.' },
+  { name: 'Vetiver', benefits: ['Grounding', 'Stress Reduction'], safety: 'Generally safe; dilute before use.' },
+  { name: 'Wintergreen', benefits: ['Pain Relief', 'Anti-Inflammatory'], safety: 'Avoid during pregnancy; can be toxic if ingested.' },
+  { name: 'Clove', benefits: ['Antimicrobial', 'Dental Health'], safety: 'Use in low concentrations; may cause skin irritation.' },
+  { name: 'Oregano', benefits: ['Immune Support', 'Antimicrobial'], safety: 'Use in low concentrations; may cause skin irritation.' },
 ];
+
+
 
 const blend = [];
 
@@ -16,7 +51,6 @@ function init() {
   displaySavedBlends();
 }
 
-// Create list of oils
 function createOilList() {
   const oilListDiv = document.createElement('div');
   oilListDiv.id = 'oil-list';
@@ -29,14 +63,18 @@ function createOilList() {
 
     // Drag events
     oilItem.addEventListener('dragstart', handleDragStart);
+
+    // Add click event for mobile support
     oilItem.addEventListener('click', () => {
       addOilToBlend(oil.name);
     });
+
     oilListDiv.appendChild(oilItem);
   });
 
   return oilListDiv;
 }
+
 
 // Create blend area
 function createBlendArea() {
