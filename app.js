@@ -283,12 +283,30 @@ function createBlendArea() {
   return blendAreaDiv;
 }
 
+function clearSelection() {
+  const oilItems = document.querySelectorAll('.oil-item.selected');
+  oilItems.forEach((item) => {
+    item.classList.remove('selected');
+  });
+}
+
+
 function loadBlend(savedBlend) {
   blend.length = 0; // Clear current blend
   savedBlend.forEach((oil) => blend.push({ ...oil }));
+  clearSelection(); // Clear previous selection
+  savedBlend.forEach((oil) => {
+    const oilItems = document.querySelectorAll('.oil-item');
+    oilItems.forEach((item) => {
+      if (item.innerText === oil.name) {
+        item.classList.add('selected');
+      }
+    });
+  });
   updateBlendDisplay();
   saveBlendState();
 }
+
 
 let draggedOil = null;
 
@@ -318,13 +336,33 @@ function addOilToBlend(oilName) {
   } else {
     blend.push({ name: oilName, ratio: 10 });
   }
+
+  // Add selected class to the oil item
+  const oilItems = document.querySelectorAll('.oil-item');
+  oilItems.forEach((item) => {
+    if (item.innerText === oilName) {
+      item.classList.add('selected');
+    }
+  });
+
   updateBlendDisplay();
   saveBlendState();
 }
 
+function removeOilFromBlend(oilName) {
+  const index = blend.findIndex((oil) => oil.name === oilName);
+  if (index !== -1) {
+    blend.splice(index, 1);
+    updateBlendDisplay();
+    saveBlendState();
+  }
+}
+
+
 function updateBlendDisplay() {
   const blendDisplay = document.getElementById('blend-display');
   blendDisplay.innerHTML = '';
+
   blend.forEach((oil) => {
     const oilDiv = document.createElement('div');
 
@@ -336,6 +374,10 @@ function updateBlendDisplay() {
     input.min = 0;
     input.max = 100;
     input.value = oil.ratio;
+
+    const ratioLabel = document.createElement('span');
+    ratioLabel.innerText = `${oil.ratio}%`;
+
     input.addEventListener('input', (e) => {
       oil.ratio = parseInt(e.target.value);
       ratioLabel.innerText = `${oil.ratio}%`;
@@ -344,19 +386,27 @@ function updateBlendDisplay() {
       saveBlendState();
     });
 
-    const ratioLabel = document.createElement('span');
-    ratioLabel.innerText = `${oil.ratio}%`;
+    // Remove Button
+    const removeButton = document.createElement('button');
+    removeButton.innerText = 'Remove';
+    removeButton.className = 'small-button remove-button';
+    removeButton.addEventListener('click', () => {
+      removeOilFromBlend(oil.name);
+    });
 
     oilDiv.appendChild(label);
     oilDiv.appendChild(input);
     oilDiv.appendChild(ratioLabel);
+    oilDiv.appendChild(removeButton);
 
     blendDisplay.appendChild(oilDiv);
   });
 
   updateTotalRatioDisplay();
   updateBenefitsDisplay();
+  updateSelectionState();
 }
+
 
 function updateTotalRatioDisplay() {
   const totalRatioDisplay = document.getElementById('total-ratio-display');
@@ -418,6 +468,21 @@ function saveBlend() {
     displaySavedBlends();
   }
 }
+
+function updateSelectionState() {
+  const oilItems = document.querySelectorAll('.oil-item');
+  oilItems.forEach((item) => {
+    const oilName = item.innerText;
+    const isInBlend = blend.some((oil) => oil.name === oilName);
+    if (isInBlend) {
+      item.classList.add('selected');
+    } else {
+      item.classList.remove('selected');
+    }
+  });
+}
+
+
 
 function displaySavedBlends() {
   let savedBlendsDiv = document.getElementById('saved-blends');
