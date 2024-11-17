@@ -1,62 +1,346 @@
-body {
-  font-family: Arial, sans-serif;
+/* Reset default browser styles */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
 }
 
+/* Body */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+/* Header */
 h1 {
-  text-align: center;
-  padding: 20px;
-  background-color: #4caf50;
+  background-color: #5cb85c;
   color: white;
-  margin: 0;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
+/* Container */
 #app {
+  max-width: 960px;
+  margin: 0 auto;
   padding: 20px;
 }
 
-#oil-list, #blend-area {
+/* Section Headers */
+h2 {
+  margin-bottom: 20px;
+  color: #5cb85c;
+}
+
+/* Search Bar and Benefit Filter */
+#search-bar,
+#benefit-filter {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#benefit-filter {
+  margin-bottom: 30px;
+}
+
+/* Benefit Selection */
+#benefit-selection {
+  margin-bottom: 30px;
+}
+
+#benefit-selection h2 {
+  margin-bottom: 15px;
+}
+
+.benefit-option {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.benefit-option input {
+  margin-right: 5px;
+}
+
+/* Oil List */
+#oil-list {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
 .oil-item {
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #e1e1e1;
   border-radius: 5px;
-  padding: 10px;
-  margin: 5px;
-  cursor: move;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  width: 180px;
+  text-align: center;
+  transition: box-shadow 0.3s;
 }
 
+.oil-item:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Blend Container */
+#blend-container {
+  margin-bottom: 30px;
+}
+
+/* Blend Area */
 #blend-area {
-  min-height: 100px;
-  border: 2px dashed #ccc;
-  align-items: center;
-  justify-content: center;
+  border: 2px dashed #aaa;
+  border-radius: 5px;
+  padding: 30px;
+  margin-bottom: 30px;
+  background-color: #fafafa;
 }
 
-#blend-display, #benefits-display, #saved-blends {
+/* Blend Display */
+#blend-display {
+  margin-bottom: 30px;
+}
+
+#blend-display div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+#blend-display label {
+  width: 120px;
+  font-weight: bold;
+}
+
+#blend-display input[type="range"] {
+  flex: 1;
+  margin: 0 10px;
+}
+
+#blend-display span {
+  width: 50px;
+  text-align: right;
+}
+
+/* Total Ratio Display */
+#total-ratio-display {
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
+/* Benefits Display */
+#benefits-display {
+  background-color: #dff0d8;
+  border: 1px solid #d0e9c6;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* Buttons */
 button {
-  padding: 10px 20px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 15px 25px;
   font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #4cae4c;
+}
+
+button:last-child {
+  margin-right: 0;
+}
+
+/* Small Buttons */
+.small-button {
+  background-color: #f0ad4e;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.small-button:hover {
+  background-color: #ec971f;
+}
+
+/* Undo and Redo Buttons */
+#app > button {
+  margin-right: 10px;
+}
+
+#app > button:last-of-type {
+  margin-right: 0;
+}
+
+/* Saved Blends */
+#saved-blends {
+  margin-bottom: 30px;
+}
+
+#saved-blends h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.saved-blend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  transition: background-color 0.3s;
+}
+
+.saved-blend-item:hover {
+  background-color: #f5f5f5;
+}
+
+.saved-blend-item span {
+  flex-grow: 1;
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
-  #oil-list, #blend-area {
-    flex-direction: column;
-    align-items: center;
+.saved-blend-item button {
+  margin-left: 10px;
+  background-color: #f0ad4e;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.saved-blend-item button:hover {
+  background-color: #ec971f;
+}
+
+/* Suggested Blends */
+#suggested-blends {
+  margin-bottom: 30px;
+}
+
+#suggested-blends h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.suggested-blend-item {
+  background-color: #e7f3fe;
+  border: 1px solid #b3d7ff;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.suggested-blend-item:hover {
+  background-color: #d0e7ff;
+}
+
+/* Modal Styles (for Safety Information) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  #oil-list .oil-item {
+    width: calc(50% - 20px);
   }
 
-  .oil-item {
-    width: 80%;
+  #blend-display div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #blend-display label,
+  #blend-display input[type="range"],
+  #blend-display span {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  button {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group button {
+    margin-bottom: 10px;
+  }
+
+  .button-group button:last-child {
+    margin-bottom: 0;
   }
 }
 
+@media (max-width: 480px) {
+  #oil-list .oil-item {
+    width: calc(100% - 20px);
+  }
+}

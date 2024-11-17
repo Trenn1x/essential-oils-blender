@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Essential Oils Blending Tool</title>
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css" />
+  <!-- Add Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1>Essential Oils Blending Tool</h1>
   <div id="app"></div>
+  
+  <!-- Safety Information Modal -->
+  <div id="safety-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2 id="modal-oil-name">Oil Name</h2>
+      <p id="modal-safety-info">Safety Information</p>
+    </div>
+  </div>
+
+  <!-- Your App's JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
-
